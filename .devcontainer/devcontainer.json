@@ -1,0 +1,31 @@
+{
+	"name": "Ubuntu",
+	"remoteUser": "vscode",
+	
+	"build": {
+		"dockerfile": "Dockerfile",
+		// TODO: push image to ghcr.io
+		// "cacheFrom": "",
+		"args": { "VARIANT": "ubuntu-22.04" }
+	},
+
+	"features": {
+		// utils
+		"docker-from-docker": "latest",
+		"node": {
+			"version": "lts",
+			"nodeGypDependencies": true
+		},
+
+		"aws-cli": "latest",
+		"terraform": "latest",
+	},
+
+	"mounts": [
+		"source=${env:HOME}${env:USERPROFILE}/.aws,target=/home/vscode/.aws,type=bind",
+	],
+
+	"extensions": [
+		"ms-vscode.makefile-tools",
+	],
+}
